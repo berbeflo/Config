@@ -5,6 +5,7 @@ namespace berbeflo\Config\Test;
 
 use berbeflo\Config\Config;
 use PHPUnit\Framework\TestCase;
+use InvalidArgumentException;
 
 class ConfigTest extends TestCase
 {
@@ -12,6 +13,7 @@ class ConfigTest extends TestCase
 
     public function __construct()
     {
+        parent::__construct();
         $file = BASE_DIR . '/tests/files/config1.php';
         $this->config = new Config($file);
     }
