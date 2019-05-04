@@ -1,0 +1,9 @@
+### Composer ###
+composer.phar
+/vendor/
+
+### VisualStudioCode ###
+.vscode/*
+
+### Misc ###
+message.txt
