@@ -61,6 +61,11 @@ class Config
         return $current;
     }
 
+    public function getAll() : array
+    {
+        return $this->configArray;
+    }
+
     private function addDefaultToCache(string $path) : void
     {
         $this->cache[$path] = new NotExistent();
