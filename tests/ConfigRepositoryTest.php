@@ -9,18 +9,21 @@ use PHPUnit\Framework\TestCase;
 
 class ConfigRepositoryTest extends TestCase
 {
-    public function __construct()
+    public static function setUpBeforeClass() : void
     {
-        parent::__construct();
         $directory = BASE_DIR . '/tests/files/';
 
         ConfigRepository::throwExceptions();
         ConfigRepository::addSearchPath($directory);
     }
 
-    public function testAddInvalidFile()
+    public function setUp() : void
     {
         ConfigRepository::throwExceptions();
+    }
+
+    public function testAddInvalidFile()
+    {
         $this->expectException(InvalidArgumentException::class);
         $file = BASE_DIR . 'config2';
         ConfigRepository::add($file);
@@ -30,7 +33,6 @@ class ConfigRepositoryTest extends TestCase
 
     public function testAddInvalidDirectory()
     {
-        ConfigRepository::throwExceptions();
         $this->expectException(InvalidArgumentException::class);
         ConfigRepository::addSearchPath(BASE_DIR . '/does/not/exist');
     }

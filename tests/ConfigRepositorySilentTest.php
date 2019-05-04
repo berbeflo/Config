@@ -8,9 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 class ConfigRepositorySilentTest extends TestCase
 {
-    public function __construct()
+    public static function setUpBeforeClass() : void
     {
-        parent::__construct();
         $directory = BASE_DIR . '/tests/files/';
         $file1 = 'config1';
         $file2 = 'config3';
@@ -21,34 +20,34 @@ class ConfigRepositorySilentTest extends TestCase
         ConfigRepository::add($file2);
     }
 
-    public function testAddInvalidFile()
+    public function setUp() : void
     {
         ConfigRepository::suppressExceptions();
+    }
+
+    public function testAddInvalidFile()
+    {
         $file = 'config2';
         ConfigRepository::add($file);
     }
 
     public function testAddInvalidDirectory()
     {
-        ConfigRepository::suppressExceptions();
         ConfigRepository::addSearchPath(BASE_DIR . '/does/not/exist');
     }
 
     public function testGetValue()
     {
-        ConfigRepository::suppressExceptions();
         $this->assertSame('case', ConfigRepository::get('config3.test'));
     }
 
     public function testGetWhole()
     {
-        ConfigRepository::suppressExceptions();
         $this->assertEquals(['test' => 'case'], ConfigRepository::get('config3'));
     }
 
     public function testGetDefault()
     {
-        ConfigRepository::suppressExceptions();
         $this->assertEquals(null, ConfigRepository::get('config2'));
     }
 }

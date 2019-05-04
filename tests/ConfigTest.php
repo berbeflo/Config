@@ -9,13 +9,12 @@ use PHPUnit\Framework\TestCase;
 
 class ConfigTest extends TestCase
 {
-    private $config;
+    private static $config;
 
-    public function __construct()
+    public static function setUpBeforeClass() : void
     {
-        parent::__construct();
         $file = BASE_DIR . '/tests/files/config1.php';
-        $this->config = new Config($file);
+        self::$config = new Config($file);
     }
 
     public function testInexistentFile() : void
@@ -44,21 +43,21 @@ class ConfigTest extends TestCase
         $default1 = null;
         $default2 = '';
         $path = 'does.not.exist';
-        $this->assertSame($default1, $this->config->get($path));
-        $this->assertSame($default1, $this->config->get($path, $default1));
-        $this->assertSame($default2, $this->config->get($path, $default2));
+        $this->assertSame($default1, self::$config->get($path));
+        $this->assertSame($default1, self::$config->get($path, $default1));
+        $this->assertSame($default2, self::$config->get($path, $default2));
     }
 
     public function testReturnsNull() : void
     {
         $path = 'a.for.tests';
         $default = '';
-        $this->assertSame(null, $this->config->get($path, $default));
+        $this->assertSame(null, self::$config->get($path, $default));
     }
 
     public function testFindsResult() : void
     {
         $path = 'just.test';
-        $this->assertSame('file', $this->config->get($path));
+        $this->assertSame('file', self::$config->get($path));
     }
 }
