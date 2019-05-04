@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace berbeflo\Config\Test;
 
 use berbeflo\Config\Config;
-use PHPUnit\Framework\TestCase;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 class ConfigTest extends TestCase
 {
@@ -18,9 +18,16 @@ class ConfigTest extends TestCase
         $this->config = new Config($file);
     }
 
-    public function testInvalidFile() : void
+    public function testInexistentFile() : void
     {
         $file = BASE_DIR . '/tests/files/config0.php';
+        $this->expectException(InvalidArgumentException::class);
+        $config = new Config($file);
+    }
+
+    public function testInvalidFile() : void
+    {
+        $file = BASE_DIR . '/tests/files/config2.php';
         $this->expectException(InvalidArgumentException::class);
         $config = new Config($file);
     }
