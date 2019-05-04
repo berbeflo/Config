@@ -12,8 +12,8 @@ class ConfigRepositorySilentTest extends TestCase
     {
         parent::__construct();
         $directory = BASE_DIR . '/tests/files/';
-        $file1 = BASE_DIR . 'config1.php';
-        $file2 = BASE_DIR . 'config3.php';
+        $file1 = 'config1';
+        $file2 = 'config3';
 
         ConfigRepository::suppressExceptions();
         ConfigRepository::addSearchPath($directory);
@@ -23,22 +23,32 @@ class ConfigRepositorySilentTest extends TestCase
 
     public function testAddInvalidFile()
     {
-        $file = BASE_DIR . '/tests/files/config2.php';
+        ConfigRepository::suppressExceptions();
+        $file = 'config2';
         ConfigRepository::add($file);
+    }
+
+    public function testAddInvalidDirectory()
+    {
+        ConfigRepository::suppressExceptions();
+        ConfigRepository::addSearchPath(BASE_DIR . '/does/not/exist');
     }
 
     public function testGetValue()
     {
+        ConfigRepository::suppressExceptions();
         $this->assertSame('case', ConfigRepository::get('config3.test'));
     }
 
     public function testGetWhole()
     {
+        ConfigRepository::suppressExceptions();
         $this->assertEquals(['test' => 'case'], ConfigRepository::get('config3'));
     }
 
     public function testGetDefault()
     {
+        ConfigRepository::suppressExceptions();
         $this->assertEquals(null, ConfigRepository::get('config2'));
     }
 }
