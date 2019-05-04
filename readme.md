@@ -1,6 +1,12 @@
 # berbeflo/Config
 This library offers a simple interface for the access of config arrays. While there are a lot of fantastic libraries out there that provide similar functionality, most of them are far more complex as I need them.
 
+## Installation
+```
+clone git@github.com:berbeflo/Config.git
+composer install [--no-dev]
+```
+
 ## The Config class
 This class receives an array from a given file.
 The access via the method `get` happens via a dot-separated array path. E.g: `get('database.host')` will return `'localhost'`. This method's second parameter is the value to return if the given config path isn't set.
