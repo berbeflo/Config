@@ -20,7 +20,7 @@ class ConfigRepository
      *
      * @return void
      *
-     * @throws InvalidArgumentException if the directory does not exist
+     * @throws \InvalidArgumentException if the directory does not exist
      */
     public static function addSearchPath(string $directory) : void
     {
@@ -70,7 +70,7 @@ class ConfigRepository
      *
      * @return void
      *
-     * @throws InvalidArgumentException if the file is invalid
+     * @throws \InvalidArgumentException if the file is invalid
      */
     public static function add(string $fileName) : void
     {

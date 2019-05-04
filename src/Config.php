@@ -13,7 +13,7 @@ class Config
      *
      * @param  string $filePath the path to the file to load
      *
-     * @throws InvalidArgumentException when file is invalid
+     * @throws \InvalidArgumentException when file is invalid
      */
     public function __construct(string $filePath)
     {
