@@ -7,3 +7,10 @@ composer.phar
 
 ### Misc ###
 message.txt
+
+### Cache-Files ###
+.php_cs.cache
+.phpunit.result.cache
+
+### Code-Coverage ###
+/cc/
