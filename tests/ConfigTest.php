@@ -16,6 +16,13 @@ class ConfigTest extends TestCase
         $this->config = new Config($file);
     }
 
+    public function testInvalidFile() : void
+    {
+        $file = BASE_DIR . '/tests/files/config0.php';
+        $this->expectException(InvalidArgumentException::class);
+        $config = new Config($file);
+    }
+
     public function testDefault() : void
     {
         $default1 = null;
