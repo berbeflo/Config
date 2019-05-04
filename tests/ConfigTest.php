@@ -32,6 +32,13 @@ class ConfigTest extends TestCase
         $config = new Config($file);
     }
 
+    public function testGetWholeFile() : void
+    {
+        $file = BASE_DIR . '/tests/files/config3.php';
+        $config = new Config($file);
+        $this->assertEquals(['test' => 'case'], $config->getAll());
+    }
+
     public function testDefault() : void
     {
         $default1 = null;
