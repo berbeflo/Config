@@ -8,6 +8,13 @@ class Config
     private $configArray;
     private $cache = [];
 
+    /**
+     * __construct
+     *
+     * @param  string $filePath the path to the file to load
+     *
+     * @throws InvalidArgumentException when file is invalid
+     */
     public function __construct(string $filePath)
     {
         if (!$this->checkFileValid($filePath)) {
@@ -24,6 +31,8 @@ class Config
     }
 
     /**
+     * get
+     *
      * gets the requested config data. If it doesn't exist,
      * $default will be returned. Defaults to null.
      *
@@ -61,6 +70,13 @@ class Config
         return $current;
     }
 
+    /**
+     * getAll
+     *
+     * returns the fully loaded array
+     *
+     * @return array
+     */
     public function getAll() : array
     {
         return $this->configArray;
